@@ -1,5 +1,5 @@
 import test from 'ava';
-import Bicycle from '../src/bicycle';
+import Bicycle from '../src/bi-cycle';
 
 test('able to increment and decrement with default parameters;', t => {
     const { next } = Bicycle();
