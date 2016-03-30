@@ -1,12 +1,9 @@
 import test from 'ava';
+import { cycle } from '../src/bicycle';
 
-"ava": {
-    "files": [
-        "tests/*.test.js"
-    ],
-        "babel": "inherit",
-        "require": [
-        "babel-register",
-        "./tests/helpers/setup-browser-env.js"
-    ]
+test('able to increment and decrement;', t => {
 
+    const c = cycle();
+    console.log(c);
+
+});
