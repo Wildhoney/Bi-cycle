@@ -4,7 +4,7 @@
  * @param {Number} maxItems
  * @return {Object}
  */
-export function cycle(startIndex = 0, maxItems = Infinity) {
+export default function Bicycle(startIndex = 0, maxItems = Infinity) {
 
     /**
      * @method type
