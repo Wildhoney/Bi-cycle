@@ -2,6 +2,14 @@
 
 > Bi-cycle assists in making infinite carousels and sliders by handling the index logic for you.
 
+![Travis](http://img.shields.io/travis/Wildhoney/Bi-cycle.svg?style=flat-square)
+&nbsp;
+![npm](http://img.shields.io/npm/v/bi-cycle.svg?style=flat-square)
+&nbsp;
+![License MIT](http://img.shields.io/badge/License-MIT-lightgrey.svg?style=flat-square)
+
+**npm:** `npm i bi-cycle`
+
 <img src="https://sketchedout.files.wordpress.com/2007/11/fishbike.jpg?w=480" width="300" />
 
 **Source:** [SketchedOut](https://sketchedout.wordpress.com/tag/like-a-fish-needs-a-bicycle/)
@@ -19,6 +27,6 @@ const { next } = Bicycle();
 nextButton.addEventListener('click', next);
 ```
 
-You can destructure a handful of functions &mdash; `first`, `previous`, `next`, `last` &mdash; for traversing the generator &mdash; each invocation to `Bicycle` will yield a new generator and therefore you can quite easily have multiple instances. You can also use `current` to determine the current index, and `goto` which accepts one `number` parameter which jumps to a specific index.
+You can destructure a handful of functions &mdash; `first`, `previous`, `next`, `last` &mdash; for traversing the generator &mdash; each invocation to `Bicycle` will yield a new generator and therefore you can quite easily have multiple instances. You can also use `current` to determine the current index, and `goto` which accepts a `number` parameter which navigates to a specific index.
 
-With the `Bicycle` function you can pass `startIndex` and `maxItems` &mdash; by default `Infinity`. As Bi-cycle is an infinite cycling, by specifying a `maxItems` it will constrain the value to the range specified &mdash; `0` to `maxItems`.
+With the `Bicycle` function you can pass `startIndex` and `maxItems` &mdash; by default `Infinity`. As Bi-cycle has infinite cycling specifying a `maxItems` will constrain the value to the range specified &mdash; `0` to `maxItems`.
