@@ -20,11 +20,15 @@ Bi-cycle uses [generators](https://developer.mozilla.org/en-US/docs/Web/JavaScri
 
 ```javascript
 import Bicycle from 'bi-cycle';
-const { next } = Bicycle();
+
+// ...
+
+const { next, previous } = Bicycle();
 
 // ...
 
 nextButton.addEventListener('click', next);
+previousButton.addEventListener('click', previous);
 ```
 
 You can destructure a handful of functions &mdash; `first`, `previous`, `next`, `last` &mdash; for traversing the generator &mdash; each invocation to `Bicycle` will yield a new generator and therefore you can quite easily have multiple instances. You can also use `current` to determine the current index, and `goto` which accepts a `number` parameter which navigates to a specific index.
