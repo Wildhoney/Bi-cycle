@@ -1,0 +1,37 @@
+{
+  "name": "bi-cycle",
+  "version": "0.1.0",
+  "description": "Bi-cycle assists in making infinite carousels and sliders by handling the index logic for you.",
+  "main": "dist/bi-cycle.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "ava tests/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wildhoney/Bi-cycle.git"
+  },
+  "keywords": [
+    "cycling",
+    "cycle",
+    "increment",
+    "decrement",
+    "index",
+    "carousel",
+    "slider",
+    "carousels",
+    "sliders",
+    "slideshow",
+    "slideshows"
+  ],
+  "author": "Adam Timberlake <adam.timberlake@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Wildhoney/Bi-cycle/issues"
+  },
+  "homepage": "https://github.com/Wildhoney/Bi-cycle#readme"
+}
