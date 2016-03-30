@@ -33,7 +33,9 @@
     "carousels",
     "sliders",
     "slideshow",
-    "slideshows"
+    "slideshows",
+    "traverse",
+    "traversal"
   ],
   "author": "Adam Timberlake <adam.timberlake@gmail.com>",
   "license": "MIT",
