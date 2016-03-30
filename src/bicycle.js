@@ -5,18 +5,12 @@
  * @return {Object}
  */
 export default function Bicycle(startIndex = 0, maxItems = Infinity) {
-
-    /**
-     * @method type
-     * @type {Object}
-     */
-    const type = {
-        FIRST: Symbol('first'),
-        PREVIOUS: Symbol('previous'),
-        NEXT: Symbol('next'),
-        LAST: Symbol('last'),
-        CURRENT: Symbol('current')
-    };
+    
+    const FIRST = Symbol('Bicycle/FIRST');
+    const PREVIOUS = Symbol('Bicycle/PREVIOUS');
+    const NEXT = Symbol('Bicycle/NEXT');
+    const LAST = Symbol('Bicycle/LAST');
+    const CURRENT = Symbol('Bicycle/CURRENT');
 
     /**
      * @method restrict
@@ -27,6 +21,12 @@ export default function Bicycle(startIndex = 0, maxItems = Infinity) {
         return (desiredIndex < 0) ? maxItems : (desiredIndex > maxItems ? 0 : desiredIndex);
     };
 
+    /**
+     * @method counter
+     * @param {Number} index
+     * @param {Symbol|Number} cycleStrategy
+     * @yield {Object}
+     */
     function* counter(index, cycleStrategy) {
 
         const nextIndex = (function (index) {
@@ -36,11 +36,11 @@ export default function Bicycle(startIndex = 0, maxItems = Infinity) {
             }
 
             switch (cycleStrategy) {
-                case type.FIRST: return 0;
-                case type.PREVIOUS: return restrict(index - 1);
-                case type.NEXT: return restrict(index + 1);
-                case type.LAST: return maxItems;
-                case type.CURRENT: return index;
+                case FIRST: return 0;
+                case PREVIOUS: return restrict(index - 1);
+                case NEXT: return restrict(index + 1);
+                case LAST: return maxItems;
+                case CURRENT: return index;
                 default: return index;
             }
 
@@ -54,11 +54,11 @@ export default function Bicycle(startIndex = 0, maxItems = Infinity) {
     state.next();
 
     return {
-        first: () => state.next(type.FIRST).value,
-        previous: () => state.next(type.PREVIOUS).value,
-        next: () => state.next(type.NEXT).value,
-        last: () => state.next(type.LAST).value,
-        current: () => state.next(type.CURRENT).value,
+        first: () => state.next(FIRST).value,
+        previous: () => state.next(PREVIOUS).value,
+        next: () => state.next(NEXT).value,
+        last: () => state.next(LAST).value,
+        current: () => state.next(CURRENT).value,
         goto: slideNumber => state.next(slideNumber).value
     };
 
