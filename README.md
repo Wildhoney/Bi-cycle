@@ -23,7 +23,7 @@ import Bicycle from 'bi-cycle';
 
 // ...
 
-const { next, previous } = Bicycle({ startIndex: 0, maxItems: 5 });
+const { next, previous } = Bicycle({ startIndex: 0, maxItems: 5, isInfinite: true });
 
 nextButton.addEventListener('click', next);
 previousButton.addEventListener('click', previous);
