@@ -49,8 +49,12 @@ test('able to specify partial options;', t => {
 });
 
 test('able to change to a finite list so index does not reset;', t => {
-    const { next, goto } = Bicycle({ maxItems: 5 });
+    const { previous, next, goto } = Bicycle({ maxItems: 5, isInfinite: false });
     t.is(goto(4), 4);
     t.is(next(), 5);
-    // t.is(next(), 5);
+    t.is(next(), 5);
+    t.is(goto(0), 0);
+    t.is(previous(), 0);
+    t.is(goto(100), 5);
+    t.is(goto(-100), 0);
 });
