@@ -26,12 +26,24 @@ export default function Bicycle({ startIndex = defaults.startIndex, maxItems = d
     const options = { ...defaults, ...{ startIndex, maxItems, isInfinite } };
 
     /**
+     * @method belowRange
+     * @return {Number}
+     */
+    const belowRange = () => isInfinite ? maxItems : 0;
+
+    /**
+     * @method aboveRange
+     * @return {Number}
+     */
+    const aboveRange = () => isInfinite ? 0 : maxItems;
+
+    /**
      * @method restrict
      * @param {Number} desiredIndex
      * @return {Number}
      */
     const restrict = desiredIndex => {
-        return (desiredIndex < 0) ? maxItems : (desiredIndex > maxItems ? 0 : desiredIndex);
+        return (desiredIndex < 0) ? belowRange() : (desiredIndex > maxItems ? aboveRange() : desiredIndex);
     };
 
     /**

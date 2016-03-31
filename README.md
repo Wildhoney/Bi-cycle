@@ -43,4 +43,6 @@ You may also pass in additional parameters to `Bicycle` in order to override the
  * `maxItems` Determines the `0` to `maxItems` range for the index &ndash default is `Infinity`;
  * `isInfinite` Determines the action of Bi-cycle when the index is our of range &ndash; default `true`;
 
+[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
+
 Released under the [MIT license](https://github.com/Wildhoney/Bi-cycle/blob/master/LICENSE.md).

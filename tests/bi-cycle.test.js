@@ -47,3 +47,10 @@ test('able to specify partial options;', t => {
     const { next } = Bicycle({ maxItems: 5 });
     t.is(next(), 1);
 });
+
+test('able to change to a finite list so index does not reset;', t => {
+    const { next, goto } = Bicycle({ maxItems: 5 });
+    t.is(goto(4), 4);
+    t.is(next(), 5);
+    // t.is(next(), 5);
+});
