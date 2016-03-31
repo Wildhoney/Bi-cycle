@@ -23,18 +23,24 @@ import Bicycle from 'bi-cycle';
 
 // ...
 
-const startIndex = 0;
-const maxItems = 5;
-const { next, previous } = Bicycle(startIndex, maxItems);
-
-// ...
+const { next, previous } = Bicycle({ startIndex: 0, maxItems: 5 });
 
 nextButton.addEventListener('click', next);
 previousButton.addEventListener('click', previous);
 ```
 
-You can destructure a handful of functions &mdash; `first`, `previous`, `next`, `last` &mdash; for traversing the generator &mdash; each invocation to `Bicycle` will yield a new generator and therefore you can quite easily have multiple instances. You can also use `current` to determine the current index, and `goto` which accepts a `number` parameter which navigates to a specific index.
+There are handful of functions which can be destructured for modifying the state:
 
-With the `Bicycle` function you can pass `startIndex` and `maxItems` &mdash; by default `Infinity`. As Bi-cycle has infinite cycling specifying a `maxItems` will constrain the value to the range specified &mdash; `0` to `maxItems`.
+ * `next` Moves either to the next index, or to `0` if at `maxItems`;
+ * `previous` Moves either to the previous index, or to `maxItems` if at `0`;
+ * `first` Moves to `0`;
+ * `last` Moves to `maxItems` &ndash; by default `Infinity`;
+ * `goto(n)` Moves to slide denoted by `n` otherwise `0` or `maxItems` if out of range;
+ 
+You may also pass in additional parameters to `Bicycle` in order to override the defaults:
+
+ * `startIndex` Determines the initial index value &ndash; default is `0`;
+ * `maxItems` Determines the `0` to `maxItems` range for the index &ndash default is `Infinity`;
+ * `isInfinite` Determines the action of Bi-cycle when the index is our of range &ndash; default `true`;
 
 Released under the [MIT license](https://github.com/Wildhoney/Bi-cycle/blob/master/LICENSE.md).

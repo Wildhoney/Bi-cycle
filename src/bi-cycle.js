@@ -1,16 +1,29 @@
 /**
+ * @constant defaults
+ * @type {Object}
+ */
+const defaults = { startIndex: 0, maxItems: Infinity, isInfinite: true };
+
+/**
  * @method cycle
- * @param {Number} startIndex
- * @param {Number} maxItems
+ * @param {Number} [startIndex = 0]
+ * @param {Number} [maxItems = Infinity]
+ * @param {Number} [isInfinite = true]
  * @return {Object}
  */
-export default function Bicycle(startIndex = 0, maxItems = Infinity) {
-    
+export default function Bicycle({ startIndex = defaults.startIndex, maxItems = defaults.maxItems, isInfinite = defaults.isInfinite } = defaults) {
+
     const FIRST = Symbol('Bicycle/FIRST');
     const PREVIOUS = Symbol('Bicycle/PREVIOUS');
     const NEXT = Symbol('Bicycle/NEXT');
     const LAST = Symbol('Bicycle/LAST');
     const CURRENT = Symbol('Bicycle/CURRENT');
+
+    /**
+     * @constant options
+     * @type {Object}
+     */
+    const options = { ...defaults, ...{ startIndex, maxItems, isInfinite } };
 
     /**
      * @method restrict
@@ -24,10 +37,10 @@ export default function Bicycle(startIndex = 0, maxItems = Infinity) {
     /**
      * @method counter
      * @param {Number} index
-     * @param {Symbol|Number} cycleStrategy
+     * @param {Symbol|Number} [cycleStrategy = CURRENT]
      * @yield {Object}
      */
-    function* counter(index, cycleStrategy) {
+    function* counter(index, cycleStrategy = CURRENT) {
 
         const nextIndex = (function (index) {
 
@@ -50,7 +63,7 @@ export default function Bicycle(startIndex = 0, maxItems = Infinity) {
 
     }
 
-    const state = counter(startIndex);
+    const state = counter(options.startIndex);
     state.next();
 
     return {
