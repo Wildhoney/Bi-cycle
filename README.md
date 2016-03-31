@@ -18,6 +18,8 @@
 
 Bi-cycle uses [generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators) and provides an interface to modify the immutable index.
 
+**Note:** `Bi-cycle` is more a proof of concept for not mutating values, however you're more than welcome to use it in production environments.
+
 ```javascript
 import Bicycle from 'bi-cycle';
 
@@ -35,7 +37,7 @@ There are handful of functions which can be destructured for modifying the state
  * `previous` Moves either to the previous index, or to `maxItems` if at `0`;
  * `first` Moves to `0`;
  * `last` Moves to `maxItems` &ndash; by default `Infinity`;
- * `goto(n)` Moves to slide denoted by `n` otherwise `0` or `maxItems` if out of range;
+ * `set(n)` Sets slide denoted by `n` otherwise `0` or `maxItems` if out of range;
  
 You may also pass in additional parameters to `Bicycle` in order to override the defaults:
 

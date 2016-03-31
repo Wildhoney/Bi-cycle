@@ -15,7 +15,7 @@ test('able to return the current index when no arguments passed;', t => {
 });
 
 test('able to traverse the index using all instructions;', t => {
-    const { first, previous, next, last, current, goto } = Bicycle();
+    const { first, previous, next, last, current, set } = Bicycle();
     t.is(next(), 1);
     t.is(previous(), 0);
     t.is(next(), 1);
@@ -23,15 +23,15 @@ test('able to traverse the index using all instructions;', t => {
     t.is(last(), Infinity);
     t.is(first(), 0);
     t.is(next(), 1);
-    t.is(goto(5), 5);
+    t.is(set(5), 5);
     t.is(current(), 5);
     t.is(next(), 6);
 });
 
 test('able to add a maximum limit on the index;', t => {
-    const { first, previous, next, last, goto } = Bicycle({ startIndex: 0, maxItems: 5 });
+    const { first, previous, next, last, set } = Bicycle({ startIndex: 0, maxItems: 5 });
     t.is(next(), 1);
-    t.is(goto(5), 5);
+    t.is(set(5), 5);
     t.is(next(), 0);
     t.is(last(), 5);
     t.is(previous(), 4);
@@ -49,12 +49,11 @@ test('able to specify partial options;', t => {
 });
 
 test('able to change to a finite list so index does not reset;', t => {
-    const { previous, next, goto } = Bicycle({ maxItems: 5, isInfinite: false });
-    t.is(goto(4), 4);
-    t.is(next(), 5);
-    t.is(next(), 5);
-    t.is(goto(0), 0);
+    const { previous, next, set } = Bicycle({ maxItems: 5, isInfinite: false });
+    t.is(next(), 1);
+    t.is(next(), 2);
+    t.is(set(0), 0);
     t.is(previous(), 0);
-    t.is(goto(100), 5);
-    t.is(goto(-100), 0);
+    t.is(set(100), 5);
+    t.is(set(-100), 0);
 });

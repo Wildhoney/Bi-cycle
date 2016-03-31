@@ -84,7 +84,7 @@ export default function Bicycle({ startIndex = defaults.startIndex, maxItems = d
         next: () => state.next(NEXT).value,
         last: () => state.next(LAST).value,
         current: () => state.next(CURRENT).value,
-        goto: slideNumber => state.next(slideNumber).value
+        set: slideNumber => state.next(slideNumber).value
     };
 
 }
