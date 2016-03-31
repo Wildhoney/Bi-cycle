@@ -23,7 +23,9 @@ import Bicycle from 'bi-cycle';
 
 // ...
 
-const { next, previous } = Bicycle();
+const startIndex = 0;
+const maxItems = 5;
+const { next, previous } = Bicycle(startIndex, maxItems);
 
 // ...
 
