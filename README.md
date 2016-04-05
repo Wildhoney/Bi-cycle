@@ -18,14 +18,14 @@
 
 Bi-cycle uses [generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators) and provides an interface to modify the immutable index.
 
-**Note:** `Bi-cycle` is more a proof of concept for not mutating values, however you're more than welcome to use it in production environments.
+**Note:** `Bi-cycle` is more a proof of concept for not mutating values using generators, however you're more than welcome to use it in production.
 
 ```javascript
 import Bicycle from 'bi-cycle';
 
 // ...
 
-const { next, previous } = Bicycle({ startIndex: 0, maxItems: 5, isInfinite: true });
+const { next, previous } = Bicycle({ start: 0, max: 5, infinite: true });
 
 nextButton.addEventListener('click', next);
 previousButton.addEventListener('click', previous);
@@ -33,17 +33,18 @@ previousButton.addEventListener('click', previous);
 
 There are handful of functions which can be destructured for modifying the state:
 
- * `next` Moves either to the next index, or to `0` if at `maxItems`;
- * `previous` Moves either to the previous index, or to `maxItems` if at `0`;
- * `first` Moves to `0`;
- * `last` Moves to `maxItems` &ndash; by default `Infinity`;
- * `set(n)` Sets slide denoted by `n` otherwise `0` or `maxItems` if out of range;
+ * `next` Moves either to the next index, or to `min` if at `max`;
+ * `previous` Moves either to the previous index, or to `max` if at `min`;
+ * `first` Moves to `min`;
+ * `last` Moves to `max` &ndash; by default `Infinity`;
+ * `set(n)` Sets slide denoted by `n` otherwise `min` or `max` if out of range;
  
 You may also pass in additional parameters to `Bicycle` in order to override the defaults:
 
- * `startIndex` Determines the initial index value &ndash; default is `0`;
- * `maxItems` Determines the `0` to `maxItems` range for the index &ndash default is `Infinity`;
- * `isInfinite` Determines the action of Bi-cycle when the index is our of range &ndash; default `true`;
+ * `start` Determines the initial index value &ndash; default is `min`;
+ * `min` Determines the first index &ndash default is `-Infinity`;
+ * `max` Determines the last index &ndash default is `Infinity`;
+ * `infinite` Determines the action of Bi-cycle when the index is our of range &ndash; default `true`;
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
 

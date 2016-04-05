@@ -58,13 +58,14 @@ module.exports =
 	 * @constant defaults
 	 * @type {Object}
 	 */
-	var defaults = { startIndex: 0, maxItems: Infinity, isInfinite: true };
+	var defaults = { start: 0, min: -Infinity, max: Infinity, infinite: true };
 
 	/**
 	 * @method cycle
-	 * @param {Number} [startIndex = 0]
-	 * @param {Number} [maxItems = Infinity]
-	 * @param {Number} [isInfinite = true]
+	 * @param {Number} [start = 0]
+	 * @param {Number} [min = -Infinity]
+	 * @param {Number} [max = Infinity]
+	 * @param {Number} [infinite = true]
 	 * @return {Object}
 	 */
 	function Bicycle() {
@@ -72,12 +73,14 @@ module.exports =
 
 	  var _ref = arguments.length <= 0 || arguments[0] === undefined ? defaults : arguments[0];
 
-	  var _ref$startIndex = _ref.startIndex;
-	  var startIndex = _ref$startIndex === undefined ? defaults.startIndex : _ref$startIndex;
-	  var _ref$maxItems = _ref.maxItems;
-	  var maxItems = _ref$maxItems === undefined ? defaults.maxItems : _ref$maxItems;
-	  var _ref$isInfinite = _ref.isInfinite;
-	  var isInfinite = _ref$isInfinite === undefined ? defaults.isInfinite : _ref$isInfinite;
+	  var _ref$start = _ref.start;
+	  var start = _ref$start === undefined ? defaults.start : _ref$start;
+	  var _ref$min = _ref.min;
+	  var min = _ref$min === undefined ? defaults.min : _ref$min;
+	  var _ref$max = _ref.max;
+	  var max = _ref$max === undefined ? defaults.max : _ref$max;
+	  var _ref$infinite = _ref.infinite;
+	  var infinite = _ref$infinite === undefined ? defaults.infinite : _ref$infinite;
 
 
 	  var FIRST = Symbol('Bicycle/FIRST');
@@ -90,14 +93,14 @@ module.exports =
 	   * @constant options
 	   * @type {Object}
 	   */
-	  var options = _extends({}, defaults, { startIndex: startIndex, maxItems: maxItems, isInfinite: isInfinite });
+	  var options = _extends({}, defaults, { start: start, max: max, infinite: infinite });
 
 	  /**
 	   * @method belowRange
 	   * @return {Number}
 	   */
 	  var belowRange = function belowRange() {
-	    return isInfinite ? maxItems : 0;
+	    return infinite ? max : min;
 	  };
 
 	  /**
@@ -105,7 +108,7 @@ module.exports =
 	   * @return {Number}
 	   */
 	  var aboveRange = function aboveRange() {
-	    return isInfinite ? 0 : maxItems;
+	    return infinite ? min : max;
 	  };
 
 	  /**
@@ -114,7 +117,7 @@ module.exports =
 	   * @return {Number}
 	   */
 	  var restrict = function restrict(desiredIndex) {
-	    return desiredIndex < 0 ? belowRange() : desiredIndex > maxItems ? aboveRange() : desiredIndex;
+	    return desiredIndex < min ? belowRange() : desiredIndex > max ? aboveRange() : desiredIndex;
 	  };
 
 	  /**
@@ -138,13 +141,13 @@ module.exports =
 
 	              switch (cycleStrategy) {
 	                case FIRST:
-	                  return 0;
+	                  return min;
 	                case PREVIOUS:
 	                  return restrict(index - 1);
 	                case NEXT:
 	                  return restrict(index + 1);
 	                case LAST:
-	                  return maxItems;
+	                  return max;
 	                case CURRENT:
 	                  return index;
 	                default:
@@ -168,7 +171,7 @@ module.exports =
 	    }, _marked[0], this);
 	  }
 
-	  var state = counter(options.startIndex);
+	  var state = counter(options.start);
 	  state.next();
 
 	  return {

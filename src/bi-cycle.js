@@ -2,16 +2,17 @@
  * @constant defaults
  * @type {Object}
  */
-const defaults = { startIndex: 0, maxItems: Infinity, isInfinite: true };
+const defaults = { start: 0, min: -Infinity, max: Infinity, infinite: true };
 
 /**
  * @method cycle
- * @param {Number} [startIndex = 0]
- * @param {Number} [maxItems = Infinity]
- * @param {Number} [isInfinite = true]
+ * @param {Number} [start = 0]
+ * @param {Number} [min = -Infinity]
+ * @param {Number} [max = Infinity]
+ * @param {Number} [infinite = true]
  * @return {Object}
  */
-export default function Bicycle({ startIndex = defaults.startIndex, maxItems = defaults.maxItems, isInfinite = defaults.isInfinite } = defaults) {
+export default function Bicycle({ start = defaults.start, min = defaults.min, max = defaults.max, infinite = defaults.infinite } = defaults) {
 
     const FIRST = Symbol('Bicycle/FIRST');
     const PREVIOUS = Symbol('Bicycle/PREVIOUS');
@@ -23,19 +24,19 @@ export default function Bicycle({ startIndex = defaults.startIndex, maxItems = d
      * @constant options
      * @type {Object}
      */
-    const options = { ...defaults, ...{ startIndex, maxItems, isInfinite } };
+    const options = { ...defaults, ...{ start, max, infinite } };
 
     /**
      * @method belowRange
      * @return {Number}
      */
-    const belowRange = () => isInfinite ? maxItems : 0;
+    const belowRange = () => infinite ? max : min;
 
     /**
      * @method aboveRange
      * @return {Number}
      */
-    const aboveRange = () => isInfinite ? 0 : maxItems;
+    const aboveRange = () => infinite ? min : max;
 
     /**
      * @method restrict
@@ -43,7 +44,7 @@ export default function Bicycle({ startIndex = defaults.startIndex, maxItems = d
      * @return {Number}
      */
     const restrict = desiredIndex => {
-        return (desiredIndex < 0) ? belowRange() : (desiredIndex > maxItems ? aboveRange() : desiredIndex);
+        return (desiredIndex < min) ? belowRange() : (desiredIndex > max ? aboveRange() : desiredIndex);
     };
 
     /**
@@ -61,10 +62,10 @@ export default function Bicycle({ startIndex = defaults.startIndex, maxItems = d
             }
 
             switch (cycleStrategy) {
-                case FIRST: return 0;
+                case FIRST: return min;
                 case PREVIOUS: return restrict(index - 1);
                 case NEXT: return restrict(index + 1);
-                case LAST: return maxItems;
+                case LAST: return max;
                 case CURRENT: return index;
                 default: return index;
             }
@@ -75,7 +76,7 @@ export default function Bicycle({ startIndex = defaults.startIndex, maxItems = d
 
     }
 
-    const state = counter(options.startIndex);
+    const state = counter(options.start);
     state.next();
 
     return {

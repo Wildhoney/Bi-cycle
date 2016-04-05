@@ -29,7 +29,7 @@ test('able to traverse the index using all instructions;', t => {
 });
 
 test('able to add a maximum limit on the index;', t => {
-    const { first, previous, next, last, set } = Bicycle({ startIndex: 0, maxItems: 5 });
+    const { first, previous, next, last, set } = Bicycle({ start: 0, max: 5 });
     t.is(next(), 1);
     t.is(set(5), 5);
     t.is(next(), 0);
@@ -39,17 +39,17 @@ test('able to add a maximum limit on the index;', t => {
 });
 
 test('able to specify the starting index;', t => {
-    const { next } = Bicycle({ startIndex: 4 });
+    const { next } = Bicycle({ start: 4 });
     t.is(next(), 5);
 });
 
 test('able to specify partial options;', t => {
-    const { next } = Bicycle({ maxItems: 5 });
+    const { next } = Bicycle({ max: 5 });
     t.is(next(), 1);
 });
 
 test('able to change to a finite list so index does not reset;', t => {
-    const { previous, next, set } = Bicycle({ maxItems: 5, isInfinite: false });
+    const { previous, next, set } = Bicycle({ max: 5, infinite: false });
     t.is(next(), 1);
     t.is(next(), 2);
     t.is(set(0), 0);
