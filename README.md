@@ -46,6 +46,24 @@ You may also pass in additional parameters to `Bicycle` in order to override the
  * `max` Determines the last index &ndash default is `Infinity`;
  * `infinite` Determines the action of Bi-cycle when the index is our of range &ndash; default `true`;
 
+## Unique ID
+
+Another use for Bi-cycle is a slightly over-elaborate unique ID generator &ndash; each and every time you invoke `next` a unique number is returned.
+
+```javascript
+import Bicycle from 'bi-cycle';
+
+// ...
+
+const createModel = name => {
+    return { id: next(), name };
+};
+
+console.log(createModel('Adam')); // { id: 1, name: 'Adam' }
+console.log(createModel('Maria')); // { id: 2, name: 'Maria' }
+console.log(createModel('Igba')); // { id: 3, name: 'Igba' }
+```
+
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
 
 Released under the [MIT license](https://github.com/Wildhoney/Bi-cycle/blob/master/LICENSE.md).
