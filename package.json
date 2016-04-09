@@ -1,6 +1,6 @@
 {
   "name": "bi-cycle",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Bi-cycle assists in making infinite carousels and sliders by handling the index logic for you.",
   "main": "dist/bi-cycle.js",
   "directories": {
