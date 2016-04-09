@@ -53,15 +53,15 @@ Another use for Bi-cycle is a slightly over-elaborate unique ID generator &ndash
 ```javascript
 import Bicycle from 'bi-cycle';
 
-// ...
+const { next } = Bicycle();
 
 const createModel = name => {
     return { id: next(), name };
 };
 
-console.log(createModel('Adam')); // { id: 1, name: 'Adam' }
-console.log(createModel('Maria')); // { id: 2, name: 'Maria' }
-console.log(createModel('Igba')); // { id: 3, name: 'Igba' }
+createModel('Adam'); // { id: 1, name: 'Adam' }
+createModel('Maria'); // { id: 2, name: 'Maria' }
+createModel('Igba'); // { id: 3, name: 'Igba' }
 ```
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
