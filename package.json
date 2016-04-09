@@ -6,7 +6,9 @@
   "directories": {
     "test": "tests"
   },
-  "dependencies": {},
+  "dependencies": {
+    "ramda": "^0.21.0"
+  },
   "devDependencies": {
     "ava": "git+https://github.com/sindresorhus/ava.git",
     "babel-loader": "^6.2.4",

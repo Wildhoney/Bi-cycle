@@ -1,8 +1,10 @@
+import { pickBy, isNil, complement } from 'ramda';
+
 /**
- * @constant defaults
+ * @constant defaultOptions
  * @type {Object}
  */
-const defaults = { start: 0, min: -Infinity, max: Infinity, infinite: true };
+const defaultOptions = { start: 0, min: -Infinity, max: Infinity, infinite: true };
 
 /**
  * @method cycle
@@ -12,7 +14,7 @@ const defaults = { start: 0, min: -Infinity, max: Infinity, infinite: true };
  * @param {Number} [infinite = true]
  * @return {Object}
  */
-export default function Bicycle({ start = defaults.start, min = defaults.min, max = defaults.max, infinite = defaults.infinite } = defaults) {
+export default function Bicycle({ start, min, max, infinite } = defaultOptions) {
 
     const FIRST = Symbol('Bicycle/FIRST');
     const PREVIOUS = Symbol('Bicycle/PREVIOUS');
@@ -22,21 +24,21 @@ export default function Bicycle({ start = defaults.start, min = defaults.min, ma
 
     /**
      * @constant options
-     * @type {Object}
+     * @type {Object} 
      */
-    const options = { ...defaults, ...{ start, max, infinite } };
+    const options = Object.assign({}, defaultOptions, pickBy(complement(isNil), { start, min, max, infinite }));
 
     /**
      * @method belowRange
      * @return {Number}
      */
-    const belowRange = () => infinite ? max : min;
+    const belowRange = () => options.infinite ? options.max : options.min;
 
     /**
      * @method aboveRange
      * @return {Number}
      */
-    const aboveRange = () => infinite ? min : max;
+    const aboveRange = () => options.infinite ? options.min : options.max;
 
     /**
      * @method restrict
@@ -44,7 +46,7 @@ export default function Bicycle({ start = defaults.start, min = defaults.min, ma
      * @return {Number}
      */
     const restrict = desiredIndex => {
-        return (desiredIndex < min) ? belowRange() : (desiredIndex > max ? aboveRange() : desiredIndex);
+        return (desiredIndex < options.min) ? belowRange() : (desiredIndex > options.max ? aboveRange() : desiredIndex);
     };
 
     /**
@@ -62,10 +64,10 @@ export default function Bicycle({ start = defaults.start, min = defaults.min, ma
             }
 
             switch (cycleStrategy) {
-                case FIRST: return min;
+                case FIRST: return options.min;
                 case PREVIOUS: return restrict(index - 1);
                 case NEXT: return restrict(index + 1);
-                case LAST: return max;
+                case LAST: return options.max;
                 case CURRENT: return index;
                 default: return index;
             }
