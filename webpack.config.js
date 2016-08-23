@@ -1,6 +1,3 @@
-var webpack = require('webpack');
-require('babel-loader');
-
 module.exports = {
     entry: './src/bi-cycle.js',
     output: {
