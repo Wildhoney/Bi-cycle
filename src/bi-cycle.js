@@ -46,7 +46,8 @@ export default function Bicycle({ start, min, max, infinite } = defaultOptions) 
      * @return {Number}
      */
     const restrict = desiredIndex => {
-        return (desiredIndex < options.min) ? belowRange() : (desiredIndex > options.max ? aboveRange() : desiredIndex);
+        const max = () => (desiredIndex > options.max ? aboveRange() : desiredIndex);
+        return (desiredIndex < options.min) ? belowRange() : max();
     };
 
     /**
@@ -55,7 +56,7 @@ export default function Bicycle({ start, min, max, infinite } = defaultOptions) 
      * @param {Symbol|Number} [cycleStrategy = CURRENT]
      * @yield {Object}
      */
-    function* counter(index, cycleStrategy = CURRENT) {
+    function * counter(index, cycleStrategy = CURRENT) {
 
         const nextIndex = (function (index) {
 
@@ -74,7 +75,7 @@ export default function Bicycle({ start, min, max, infinite } = defaultOptions) 
 
         })(index);
 
-        yield* counter(nextIndex, yield nextIndex);
+        yield * counter(nextIndex, yield nextIndex);
 
     }
 

@@ -17,11 +17,13 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.11.6",
     "tap-nyan": "0.0.2",
-    "webpack": "^2.1.0-beta.21"
+    "webpack": "^2.1.0-beta.21",
+    "xo": "^0.16.0"
   },
   "scripts": {
     "build": "webpack",
-    "test": "ava --tap | tap-nyan",
+    "test": "npm run spec && npm run lint",
+    "lint": "xo src/*.js",
     "spec": "ava --tap | tap-nyan"
   },
   "repository": {
@@ -60,5 +62,36 @@
       "babel-register",
       "babel-polyfill"
     ]
+  },
+  "xo": {
+    "space": 4,
+    "esnext": true,
+    "globals": [
+      "window",
+      "document"
+    ],
+    "rules": {
+      "padded-blocks": "off",
+      "max-lines": [
+        2,
+        500
+      ],
+      "babel/object-curly-spacing": [
+        2,
+        "always"
+      ],
+      "babel/array-bracket-spacing": "off",
+      "no-unused-vars": [
+        1
+      ],
+      "max-nested-callbacks": [
+        1,
+        5
+      ],
+      "default-case": "off",
+      "no-unused-expressions": "off",
+      "no-case-declarations": "off",
+      "import/no-named-as-default": "off"
+    }
   }
 }
