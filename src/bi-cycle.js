@@ -88,7 +88,7 @@ export default function Bicycle({ start, min, max, infinite } = defaultOptions) 
         next: () => state.next(NEXT).value,
         last: () => state.next(LAST).value,
         current: () => state.next(CURRENT).value,
-        set: slideNumber => state.next(slideNumber).value
+        set: index => state.next(index).value
     };
 
 }
