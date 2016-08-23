@@ -66,10 +66,6 @@
   "xo": {
     "space": 4,
     "esnext": true,
-    "globals": [
-      "window",
-      "document"
-    ],
     "rules": {
       "padded-blocks": "off",
       "max-lines": [
