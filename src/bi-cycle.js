@@ -24,9 +24,9 @@ export default function Bicycle({ start, min, max, infinite } = defaultOptions) 
 
     /**
      * @constant options
-     * @type {Object} 
+     * @type {Object}
      */
-    const options = Object.assign({}, defaultOptions, pickBy(complement(isNil), { start, min, max, infinite }));
+    const options = { ...defaultOptions, ...pickBy(complement(isNil), { start, min, max, infinite }) };
 
     /**
      * @method belowRange
