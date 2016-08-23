@@ -5293,7 +5293,10 @@ function Bicycle() {
    * @return {Number}
    */
   var restrict = function restrict(desiredIndex) {
-    return desiredIndex < options.min ? belowRange() : desiredIndex > options.max ? aboveRange() : desiredIndex;
+    var max = function max() {
+      return desiredIndex > options.max ? aboveRange() : desiredIndex;
+    };
+    return desiredIndex < options.min ? belowRange() : max();
   };
 
   /**
