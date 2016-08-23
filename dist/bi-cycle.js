@@ -5369,8 +5369,8 @@ function Bicycle() {
     current: function current() {
       return state.next(CURRENT).value;
     },
-    set: function set(slideNumber) {
-      return state.next(slideNumber).value;
+    set: function set(index) {
+      return state.next(index).value;
     }
   };
 }
