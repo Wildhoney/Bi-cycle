@@ -42,8 +42,8 @@ There are handful of functions which can be destructured for modifying the state
 You may also pass in additional parameters to `Bicycle` in order to override the defaults:
 
  * `start` Determines the initial index value &ndash; default is `min`;
- * `min` Determines the first index &ndash default is `-Infinity`;
- * `max` Determines the last index &ndash default is `Infinity`;
+ * `min` Determines the first index &ndash; default is `-Infinity`;
+ * `max` Determines the last index &ndash; default is `Infinity`;
  * `infinite` Determines the action of Bi-cycle when the index is our of range &ndash; default `true`;
 
 ## Unique ID
