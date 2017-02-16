@@ -44,7 +44,7 @@ You may also pass in additional parameters to `Bicycle` in order to override the
  * `start` Determines the initial index value &ndash; default is `min`;
  * `min` Determines the first index &ndash; default is `-Infinity`;
  * `max` Determines the last index &ndash; default is `Infinity`;
- * `infinite` Determines the action of Bi-cycle when the index is our of range &ndash; default `true`;
+ * `infinite` Determines the action of Bi-cycle when the index is our of range &ndash; default is `true`;
 
 ## Unique ID
 
